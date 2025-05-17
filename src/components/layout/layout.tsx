@@ -1,16 +1,21 @@
+import ScrollToTop from "../ui/scroll-to-top";
+import Footer from "./footer";
 import Header from "./header";
-
 
 type LayoutProps = {
   children: React.ReactNode;
-}
-const Layout = ({children}: LayoutProps) => {
+};
+const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="flex flex-col h-screen w-screen border p-5 ">
-      <Header />
-      <div className="flex flex-1 p-4 border">{children}</div>
+    <div>
+      <ScrollToTop />
+      <div className="flex flex-col h-screen   px-5 py-3 font-roboto">
+        <Header />
+        <div className="flex flex-col flex-1 md:px-16 ">{children}</div>
+        <Footer />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

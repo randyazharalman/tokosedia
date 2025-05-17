@@ -3,8 +3,10 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import ProfilePage from './pages/profile/ProfilePage.tsx'
-import MulyonoPage from './pages/profile/MulyonoPage.tsx'
+import ProductDetailPage from './pages/product-detail-page.tsx'
+import ProductsPage from './pages/products-page.tsx'
+import { CartProvider } from './context/cart-context.tsx'
+import CartPage from './pages/cart-page.tsx'
 
 const router = createBrowserRouter([
   {
@@ -12,15 +14,22 @@ const router = createBrowserRouter([
     element: <App />
   },
   {
-    path: 'profile',
-    element: <ProfilePage />,
-    children: [
-      {path: 'mulyono', element: <MulyonoPage />}
-    ]
+    path: '/products',
+    element: <ProductsPage />
+  },
+  {
+    path:'/product/:productId',
+    element: <ProductDetailPage />
+  },
+  {
+    path: '/cart',
+    element: <CartPage />
   }
 ])
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <CartProvider>
+    <RouterProvider router={router}/>
+    </CartProvider>
   </StrictMode>,
 )
